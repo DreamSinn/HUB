@@ -40,10 +40,25 @@ particlesJS('particles-js', {
     chatPopup.style.display = chatPopup.style.display === 'block' ? 'none' : 'block';
   }
   
-  // Fechar o pop-up após o envio do formulário
-  document.querySelector('form').addEventListener('submit', function (e) {
-    e.preventDefault();
-    alert('Mensagem enviada com sucesso!');
-    toggleChatPopup();
-    this.reset(); // Limpa o formulário
-  });
+// Função para exibir a notificação
+function showNotification(message) {
+  const notification = document.getElementById('notification');
+  notification.textContent = message; // Define o texto da notificação
+  notification.style.display = 'block'; // Mostra a notificação
+
+  // Esconde a notificação após 3 segundos
+  setTimeout(() => {
+    notification.style.display = 'none';
+  }, 3000);
+}
+
+// Fechar o pop-up após o envio do formulário
+document.querySelector('form').addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  // Simula o envio do formulário (substitua pelo código real de envio)
+  showNotification('Mensagem enviada com sucesso!');
+  toggleChatPopup();
+  this.reset(); // Limpa o formulário
+});
+  
