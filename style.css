@@ -187,3 +187,40 @@
   .submit-btn:hover {
     background: linear-gradient(45deg, #5d25d5, #8952f3);
   }
+
+  /* Notificação */
+.notification {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: #4CAF50; /* Verde */
+    color: white;
+    padding: 15px 25px;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    display: none; /* Escondido por padrão */
+    animation: slideIn 0.5s ease-out, fadeOut 0.5s ease-out 2.5s;
+  }
+  
+  /* Animação de entrada */
+  @keyframes slideIn {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  /* Animação de saída */
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
