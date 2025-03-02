@@ -1,45 +1,45 @@
 // Configuração das partículas
 particlesJS('particles-js', {
-    particles: {
-      number: { value: 80, density: { enable: true, value_area: 800 } },
-      color: { value: '#8952f3' },
-      shape: { type: 'circle' },
-      opacity: { value: 0.5, random: false },
-      size: { value: 3, random: true },
-      line_linked: {
-        enable: true,
-        distance: 150,
-        color: '#8952f3',
-        opacity: 0.2,
-        width: 1
-      },
-      move: {
-        enable: true,
-        speed: 2,
-        direction: 'none',
-        random: false,
-        straight: false,
-        out_mode: 'out',
-        bounce: false
-      }
+  particles: {
+    number: { value: 80, density: { enable: true, value_area: 800 } },
+    color: { value: '#8952f3' },
+    shape: { type: 'circle' },
+    opacity: { value: 0.5, random: false },
+    size: { value: 3, random: true },
+    line_linked: {
+      enable: true,
+      distance: 150,
+      color: '#8952f3',
+      opacity: 0.2,
+      width: 1
     },
-    interactivity: {
-      detect_on: 'canvas',
-      events: {
-        onhover: { enable: true, mode: 'repulse' },
-        onclick: { enable: true, mode: 'push' },
-        resize: true
-      }
-    },
-    retina_detect: true
-  });
-  
-  // Função para mostrar/ocultar o pop-up de chat
-  function toggleChatPopup() {
-    const chatPopup = document.getElementById('chatPopup');
-    chatPopup.style.display = chatPopup.style.display === 'block' ? 'none' : 'block';
-  }
-  
+    move: {
+      enable: true,
+      speed: 2,
+      direction: 'none',
+      random: false,
+      straight: false,
+      out_mode: 'out',
+      bounce: false
+    }
+  },
+  interactivity: {
+    detect_on: 'canvas',
+    events: {
+      onhover: { enable: true, mode: 'repulse' },
+      onclick: { enable: true, mode: 'push' },
+      resize: true
+    }
+  },
+  retina_detect: true
+});
+
+// Função para mostrar/ocultar o pop-up de chat
+function toggleChatPopup() {
+  const chatPopup = document.getElementById('chatPopup');
+  chatPopup.style.display = chatPopup.style.display === 'block' ? 'none' : 'block';
+}
+
 // Função para exibir a notificação
 function showNotification(message) {
   const notification = document.getElementById('notification');
@@ -52,13 +52,34 @@ function showNotification(message) {
   }, 3000);
 }
 
-// Fechar o pop-up após o envio do formulário
-document.querySelector('form').addEventListener('submit', function (e) {
-  e.preventDefault();
+// Envio do formulário com Fetch API
+document.getElementById('chatForm').addEventListener('submit', function (e) {
+  e.preventDefault(); // Evita o redirecionamento padrão
 
-  // Simula o envio do formulário (substitua pelo código real de envio)
-  showNotification('Mensagem enviada com sucesso!');
-  toggleChatPopup();
-  this.reset(); // Limpa o formulário
+  const form = e.target;
+  const formData = new FormData(form);
+
+  // Envia os dados do formulário para o FormSubmit
+  fetch(form.action, {
+    method: 'POST',
+    body: formData,
+    headers: {
+      'Accept': 'application/json'
+    }
+  })
+  .then(response => {
+    if (response.ok) {
+      // Exibe a notificação de sucesso
+      showNotification('Mensagem enviada com sucesso!');
+      toggleChatPopup(); // Fecha o pop-up de chat
+      form.reset(); // Limpa o formulário
+    } else {
+      // Exibe uma notificação de erro
+      showNotification('Erro ao enviar a mensagem. Tente novamente.');
+    }
+  })
+  .catch(error => {
+    // Exibe uma notificação de erro
+    showNotification('Erro ao enviar a mensagem. Tente novamente.');
+  });
 });
-  
