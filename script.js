@@ -34,12 +34,6 @@ particlesJS('particles-js', {
   retina_detect: true
 });
 
-// Função para mostrar/ocultar o pop-up de chat
-function toggleChatPopup() {
-  const chatPopup = document.getElementById('chatPopup');
-  chatPopup.style.display = chatPopup.style.display === 'block' ? 'none' : 'block';
-}
-
 // Função para exibir a notificação
 function showNotification(message) {
   const notification = document.getElementById('notification');
@@ -52,6 +46,12 @@ function showNotification(message) {
   }, 3000);
 }
 
+// Função para mostrar/ocultar o pop-up de chat
+function toggleChatPopup() {
+  const chatPopup = document.getElementById('chatPopup');
+  chatPopup.style.display = chatPopup.style.display === 'block' ? 'none' : 'block';
+}
+
 // Envio do formulário com Fetch API
 document.getElementById('chatForm').addEventListener('submit', function (e) {
   e.preventDefault(); // Evita o redirecionamento padrão
@@ -59,7 +59,7 @@ document.getElementById('chatForm').addEventListener('submit', function (e) {
   const form = e.target;
   const formData = new FormData(form);
 
-  // Envia os dados do formulário para o FormSubmit
+  // Envia os dados do formulário para o Getform
   fetch(form.action, {
     method: 'POST',
     body: formData,
