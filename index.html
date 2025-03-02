@@ -62,16 +62,27 @@
   <!-- Pop-up de Chat com Formulário -->
   <div class="chat-popup" id="chatPopup">
     <h3>Envie uma mensagem</h3>
-    <form action="https://formspree.io/f/xpwqvppr" method="POST">
+    <form id="chatForm" action="https://getform.io/f/axowyqqb" method="POST">
+      <!-- Campo de nome -->
+      <label>
+        Seu nome:
+        <input type="text" name="name" required placeholder="Digite seu nome">
+      </label>
+      <!-- Campo de e-mail -->
       <label>
         Seu e-mail:
         <input type="email" name="email" required placeholder="Digite seu e-mail">
       </label>
+      <!-- Campo de mensagem -->
       <label>
         Sua mensagem:
         <textarea name="message" rows="4" required placeholder="Digite sua mensagem"></textarea>
       </label>
+      <!-- Botão de envio -->
       <button type="submit" class="submit-btn">Enviar</button>
+
+      <!-- Campo oculto para evitar spam -->
+      <input type="hidden" name="_gotcha" style="display:none !important">
     </form>
   </div>
 
@@ -82,4 +93,4 @@
 <div id="notification" class="notification">
     Mensagem enviada com sucesso!
   </div>
-</html> 
+</html>
